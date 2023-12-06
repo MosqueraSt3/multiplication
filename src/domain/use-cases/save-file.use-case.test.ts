@@ -37,7 +37,7 @@ describe('SaveFileUseCase', () => {
 
     test('Should save file with custom values', () => {
         const saveFile = new SaveFile()
-         const file = saveFile.execute(customOptions)
+        const file = saveFile.execute(customOptions)
 
         const isFileExist = fs.existsSync(filePath)
         const fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' })
@@ -45,5 +45,29 @@ describe('SaveFileUseCase', () => {
         expect(file).toBe(true)
         expect(isFileExist).toBe(true)
         expect(fileContent).toBe(customOptions.fileContent)
+    })
+
+    test('Should return false if directory could not be created', () => {
+        const saveFile = new SaveFile()
+        const mkdirMock = jest.spyOn(fs, 'mkdirSync').mockImplementation(
+            () => { throw new Error('This is a custom error message from testing') }
+        );
+        const file = saveFile.execute(customOptions)
+
+        expect(file).toBe(false)
+        
+        mkdirMock.mockRestore();
+    })
+
+    test('Should return false if file could not be created', () => {
+        const saveFile = new SaveFile()
+        const writeFileMock = jest.spyOn(fs, 'writeFileSync').mockImplementation(
+            () => { throw new Error('This is a custom error message from testing') }
+        );
+        const file = saveFile.execute(customOptions)
+
+        expect(file).toBe(false)
+
+        writeFileMock.mockRestore();
     })
 })
