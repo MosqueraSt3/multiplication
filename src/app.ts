@@ -6,6 +6,6 @@ import { ServerApp } from "./presentation/server-app";
 })();
 
 async function main() {
-    const { b: base, l: limit, s: showTable } = argsv;
-    ServerApp.run({ base, limit, showTable });
+    const { b: base, l: limit, s: showTable, n: fileName, d: fileDestination } = argsv;
+    ServerApp.run({ base, limit, showTable, fileName, fileDestination });
 }

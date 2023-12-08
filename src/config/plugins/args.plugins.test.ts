@@ -20,17 +20,21 @@ describe('args.plugin.ts', () => {
         expect(args).toEqual(expect.objectContaining({
             b: 3,
             l: 10,
-            s: false
+            s: false,
+            n: 'multiplication-table',
+            d: 'outputs',
         }));
     })
 
     test('Should return configuration with custom values', async () => {
-        const args = await runCommand(['-b', '3', '-l', '20', '-s']);
+        const args = await runCommand(['-b', '3', '-l', '20', '-s', '-n', 'custom-name', '-d', 'custom-dir']);
 
         expect(args).toEqual(expect.objectContaining({
             b: 3,
             l: 20,
-            s: true
+            s: true,
+            n: 'custom-name',
+            d: 'custom-dir',
         }));
     })
 })
