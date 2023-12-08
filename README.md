@@ -25,11 +25,11 @@ The implementation of this application adheres to Clean Architecture principles,
 - jest
 - supertest
 
-## Instalación
+## Installation
 1. Clone this repository: `git clone https://github.com/MosqueraSt3/multiplication.git`
 2. Install dependencies: `npm install`
 
-## Uso
+## Usage
 1. Execute `npx ts-node ./src/app.ts -b "numberTable"`.
 2. (Optional) Add `-s` If you want the output in the console.
 3. (Optional) add `-n "nameFile"` If you want a custom name for the file.
